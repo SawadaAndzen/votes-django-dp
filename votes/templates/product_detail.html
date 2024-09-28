@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{product.name}} - Details</title>
+    </head>
+    <body>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price }}$</p>
+
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in reviews %}
+            <li>{{ review.author }}: {{ review.text }} (Rating: {{ review.rating }})</li>
+            {% empty %}
+            <li>No reviews yet.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Leave a review</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="author">Your name:</label>
+            <input type="text" name="author" id="author">
+            <label for="text">Your review:</label>
+            <textarea name="text" id="text"></textarea>
+            <label for="rating">Rating:</label>
+            <input type="number" name="rating" id="rating" min="1" max="5">
+            <button type="submit">Submit</button>
+        </form>
+
+        <script src="" async defer></script>
+    </body>
+</html>
